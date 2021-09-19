@@ -1,0 +1,363 @@
+export class Design{
+    constructor({position = 'bottom-right'}={}) {
+        this.position = this.getPosition(position);
+        this.open = false;
+        this.initalise();
+        this.createStyles();
+        this.activeLi();
+
+    }
+    getPosition(position){
+        const [vertical, horizontal] = position.split('-');
+        return{
+            [vertical]: '30px',
+            [horizontal]: '30px'
+        };
+    }
+    initalise(){
+        const container = document.createElement('div');
+        container.style.position="fixed";
+        Object.keys(this.position)
+            .forEach(key=>container.style[key] = this.position[key]);
+        document.body.appendChild(container);
+        const buttonContainer = document.createElement('div');
+        buttonContainer.classList.add('wrapper');
+        container.appendChild(buttonContainer);
+        const chatIcon = document.createElement('div');
+        chatIcon.classList.add('widget-menu');
+        this.chatIcon = chatIcon;
+
+
+        // const closeIcon = document.createElement('img');
+        // closeIcon.src = '';
+        // closeIcon.classList.add('icon','hidden');
+        // this.closeIcon = closeIcon;
+        const widgetUL = document.createElement('ul');
+        widgetUL.classList.add('Widget-menu-ul');
+
+        // Monday
+        const MonLI = document.createElement('li');
+        MonLI.classList.add('Widget-menu-li');
+        const MonA = document.createElement('a');
+        MonA.classList.add('Widget-menu-a');
+        // var  LI = widgetUL.appendChild(widgetLI);
+        MonA.href='#Mon';
+        MonA.innerText= "Mon"
+        var LiInA = MonLI.appendChild(MonA);
+
+        // Tuesday
+        const TueLI = document.createElement('li');
+        TueLI.classList.add('Widget-menu-li');
+        const TueA = document.createElement('a');
+        TueA.classList.add('Widget-menu-a');
+        // var  LI = widgetUL.appendChild(widgetLI);
+        TueA.href='#Tue';
+        TueA.innerText= "Tue"
+        var TueLiInA = TueLI.appendChild(TueA);
+
+// wednesday
+        const WedLI = document.createElement('li');
+        WedLI.classList.add('Widget-menu-li');
+        const WedA = document.createElement('a');
+        WedA.classList.add('Widget-menu-a');
+        // var  LI = widgetUL.appendChild(widgetLI);
+        WedA.href='#Wed';
+        WedA.innerText= "Wed"
+        var WedLiInA = WedLI.appendChild(WedA);
+
+        // Thursday
+        const ThuLI = document.createElement('li');
+        ThuLI.classList.add('Widget-menu-li');
+        const ThuA = document.createElement('a');
+        ThuA.classList.add('Widget-menu-a');
+        // var  LI = widgetUL.appendChild(widgetLI);
+        ThuA.href='#Thu';
+        ThuA.innerText= "Thu"
+        var ThuLiInA = ThuLI.appendChild(ThuA);
+
+        // Friday
+        const FriLI = document.createElement('li');
+        FriLI.classList.add('Widget-menu-li');
+        const FriA = document.createElement('a');
+        FriA.classList.add('Widget-menu-a');
+        // var  LI = widgetUL.appendChild(widgetLI);
+        FriA.href='#Fri';
+        FriA.innerText= "Fri"
+        var FriLiInA = FriLI.appendChild(FriA);
+
+        // Saturday
+        const SatLI = document.createElement('li');
+        SatLI.classList.add('Widget-menu-li');
+        const SatA = document.createElement('a');
+        SatA.classList.add('Widget-menu-a');
+        // var  LI = widgetUL.appendChild(widgetLI);
+        SatA.href='#Sat';
+        SatA.innerText= "Sat"
+        var SatLiInA = SatLI.appendChild(SatA);
+
+        //sunday
+        const SunLI = document.createElement('li');
+        SunLI.classList.add('Widget-menu-li');
+        const SunA = document.createElement('a');
+        SunA.classList.add('Widget-menu-a');
+        // var  LI = widgetUL.appendChild(widgetLI);
+        SunA.href='#Sun';
+        SunA.innerText= "Sun"
+        var SunLiInA = SunLI.appendChild(SunA);
+
+
+        // widget Section
+
+        const widgetSectionDiv = document.createElement("div");
+        widgetSectionDiv.classList.add("widget-section");
+        const WidgetSectionUl = document.createElement("ul");
+        WidgetSectionUl.classList.add('widget-section-ul');
+        const widgetContentLi = document.createElement('li');
+        widgetContentLi.classList.add('widget-content');
+        const widgetContentImage = document.createElement('div');
+        widgetContentImage.classList.add('widget-content-image');
+        const widgetContentImgTag = document.createElement('img');
+        widgetContentImgTag.src = 'assets/chat.svg';
+        // widgetContentImgTag.alt = "#";
+        const widgetArticle = document.createElement('div');
+        widgetArticle.classList.add('widget-article');
+        const widgetArticleHeading = document.createElement('div');
+        widgetArticleHeading.classList.add('widget-article-heading');
+        widgetArticleHeading.innerText="Lorem ipsum dolor sit h.";
+        const widgetTime = document.createElement('div');
+        widgetTime.classList.add('widget-time');
+        widgetTime.innerText = '10:00 PM - 12.00 AM';
+        const widgetDescription = document.createElement('div');
+        widgetDescription.classList.add('widget-description');
+        widgetDescription.innerText = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, autem';
+
+
+
+        // widgetUL.appendChild(widgetLI)
+        const widgetContentLi1 = document.createElement('li');
+        widgetContentLi1.classList.add('widget-content');
+        const widgetContentImage1 = document.createElement('div');
+        // const widgetContentImage1 = widgetContentImage+li;
+        widgetContentImage1.classList.add('widget-content-image');
+        const widgetContentImgTag1= document.createElement('img');
+        widgetContentImgTag1.src = 'assets/chat.svg';
+        // widgetContentImgTag1.alt = "#";
+        const widgetArticle1 = document.createElement('div');
+        widgetArticle1.classList.add('widget-article');
+        const widgetArticleHeading1 = document.createElement('div');
+        widgetArticleHeading1.classList.add('widget-article-heading');
+        widgetArticleHeading1.innerText="Lorem ipsum dolor sit h.";
+        const widgetTime1 = document.createElement('div');
+        widgetTime1.classList.add('widget-time');
+        widgetTime1.innerText = '10:00 PM - 12.00 AM';
+        const widgetDescription1 = document.createElement('div');
+        widgetDescription1.classList.add('widget-description');
+        widgetDescription1.innerText = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, autem';
+
+
+        for( var li = 0; li<10; li++){
+
+
+        }
+
+
+
+
+        //create all the of the content message container
+
+        buttonContainer.appendChild(this.chatIcon);
+        this.chatIcon.appendChild(widgetUL);
+        widgetUL.appendChild(MonLI);
+        widgetUL.appendChild(TueLI);
+        widgetUL.appendChild(WedLI);
+        widgetUL.appendChild(ThuLI);
+        widgetUL.appendChild(FriLI);
+        widgetUL.appendChild(SatLI);
+        widgetUL.appendChild(SunLI);
+        buttonContainer.appendChild(widgetSectionDiv);
+        widgetSectionDiv.appendChild(WidgetSectionUl);
+        WidgetSectionUl.appendChild(widgetContentLi);
+        widgetContentLi.appendChild(widgetContentImage);
+        widgetContentImage.appendChild(widgetContentImgTag);
+        widgetContentLi.appendChild(widgetArticle);
+        widgetArticle.appendChild(widgetArticleHeading);
+        widgetArticle.appendChild(widgetTime);
+        widgetArticle.appendChild(widgetDescription);
+
+        WidgetSectionUl.appendChild(widgetContentLi1);
+        widgetContentLi1.appendChild(widgetContentImage1);
+        widgetContentImage1.appendChild(widgetContentImgTag1);
+        widgetContentLi1.appendChild(widgetArticle1);
+        widgetArticle1.appendChild(widgetArticleHeading1);
+        widgetArticle1.appendChild(widgetTime1);
+        widgetArticle1.appendChild(widgetDescription1);
+
+
+
+
+
+    }
+
+
+    activeLi(){
+        // ACTIVE MENU
+
+        var selectMenuClass = document.querySelectorAll('.Widget-menu-a');
+        const date = new Date();
+        const day = date.getDay()
+        console.log(day)
+        switch (day){
+            case 1:
+                selectMenuClass[0].classList.add('Widget-active');
+                break;
+            case 2:
+                selectMenuClass[1].classList.add('Widget-active');
+                break;
+            case 3:
+                selectMenuClass[2].classList.add('Widget-active');
+                break;
+            case 4:
+                selectMenuClass[3].classList.add('Widget-active');
+                break;
+            case 5:
+                selectMenuClass[4].classList.add('Widget-active');
+                break;
+            case 6:
+                selectMenuClass[5].classList.add('Widget-active');
+                break;
+            case 0:
+                selectMenuClass[6].classList.add('Widget-active');
+                break;
+            default:
+                selectMenuClass[1].classList.add('Widget-active');
+
+        }
+        var navbar = document.querySelector('.widget-menu').querySelectorAll('a');
+        console.log(navbar);
+
+        navbar.forEach(element => {
+            element.addEventListener("click", function (){
+                navbar.forEach(nav=>nav.classList.remove("Widget-active"))
+                this.classList.add("Widget-active");
+            })
+        })
+    }
+
+
+    createStyles(){
+        const styleTag = document.createElement('style');
+        document.head.appendChild(styleTag);
+        styleTag.innerHTML = `
+            body{
+    font-family:  Arial, Helvetica, sans-serif;
+
+}
+
+/*---------------------------------------------------------menu-bar---------------------------------*/
+.wrapper{
+    width: 300px;   
+    float: right;
+    background: #121f5f;
+    max-height: 400px;  
+    min-height: 400px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    right: -25px;
+    bottom: 75px;
+    position: absolute;
+    transition: max-height .2s ease;
+    font-family: Helvetica, Arial ,sans-serif;
+}
+.widget-menu{
+    width: 300px;
+    margin: 0 auto;
+}
+
+.Widget-menu-ul{
+   
+    padding-left: 6px;
+
+}
+
+.Widget-menu-li{
+    float: left;
+    list-style: none;
+    margin: 0.5px;
+}
+
+.Widget-menu-a{
+    text-decoration: none;
+    display: block;
+    padding: 7px 7px;
+    font-size:15px;
+    
+    border-radius: 6px;
+    color: #ffffff;
+    margin-top: 20px;
+}
+.Widget-menu-a:hover{
+    background: black;
+    color: #ffffff;
+}
+
+.Widget-active{
+    background: black;
+    color: #ffffff;
+}
+.widget-section{
+    padding-top: 50px;
+
+}
+::-webkit-scrollbar{
+    display: none;
+}
+.widget-section-ul{
+    width: 298px;
+    height: 400px;
+    background: #212848;
+    padding: 1px;
+    overflow: hidden;
+    overflow-y: scroll;
+
+}
+.widget-content{
+    width: 300px;
+    margin: 0 auto;
+    border-bottom: 1px solid #ffffff;
+    overflow: hidden;
+}
+
+.widget-content:last-child{
+    border-bottom: none;
+}
+
+.widget-content-image{
+    width: 90px;   
+    float: left;
+    /*margin-right: 10px;*/
+    margin-top: 2px;
+
+}
+.widget-content-image img{
+    border: 1px  solid black;
+    border-radius: 10px;
+    width: 80px;
+    // height: 100px;
+
+}
+.widget-article{
+    width: 300px;    
+    color: #ffffff;
+    margin-top: 8px;
+}
+.widget-article-heading{
+    font-size: 15px;
+}
+.widget-time{
+    margin: 3px;
+    font-size: 15px;
+}
+.widget-description{
+    font-size: 10px;
+} `
+    }
+}
