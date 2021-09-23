@@ -1,5 +1,5 @@
-export class Design{
-    constructor({position = 'bottom-right'}={}) {
+export class Design {
+    constructor({position = 'bottom-right'} = {}) {
         this.position = this.getPosition(position);
         this.open = false;
         this.initalise();
@@ -7,18 +7,20 @@ export class Design{
         this.activeLi();
 
     }
-    getPosition(position){
+
+    getPosition(position) {
         const [vertical, horizontal] = position.split('-');
-        return{
+        return {
             [vertical]: '30px',
             [horizontal]: '30px'
         };
     }
-    initalise(){
+
+    initalise() {
         const container = document.createElement('div');
-        container.style.position="fixed";
+        container.style.position = "fixed";
         Object.keys(this.position)
-            .forEach(key=>container.style[key] = this.position[key]);
+            .forEach(key => container.style[key] = this.position[key]);
         document.body.appendChild(container);
         const buttonContainer = document.createElement('div');
         buttonContainer.classList.add('wrapper');
@@ -41,8 +43,8 @@ export class Design{
         const MonA = document.createElement('a');
         MonA.classList.add('Widget-menu-a');
         // var  LI = widgetUL.appendChild(widgetLI);
-        MonA.href='#Mon';
-        MonA.innerText= "Mon"
+        MonA.href = '#Mon';
+        MonA.innerText = "Mon"
         var LiInA = MonLI.appendChild(MonA);
 
         // Tuesday
@@ -51,8 +53,8 @@ export class Design{
         const TueA = document.createElement('a');
         TueA.classList.add('Widget-menu-a');
         // var  LI = widgetUL.appendChild(widgetLI);
-        TueA.href='#Tue';
-        TueA.innerText= "Tue"
+        TueA.href = '#Tue';
+        TueA.innerText = "Tue"
         var TueLiInA = TueLI.appendChild(TueA);
 
 // wednesday
@@ -61,8 +63,8 @@ export class Design{
         const WedA = document.createElement('a');
         WedA.classList.add('Widget-menu-a');
         // var  LI = widgetUL.appendChild(widgetLI);
-        WedA.href='#Wed';
-        WedA.innerText= "Wed"
+        WedA.href = '#Wed';
+        WedA.innerText = "Wed"
         var WedLiInA = WedLI.appendChild(WedA);
 
         // Thursday
@@ -71,8 +73,8 @@ export class Design{
         const ThuA = document.createElement('a');
         ThuA.classList.add('Widget-menu-a');
         // var  LI = widgetUL.appendChild(widgetLI);
-        ThuA.href='#Thu';
-        ThuA.innerText= "Thu"
+        ThuA.href = '#Thu';
+        ThuA.innerText = "Thu"
         var ThuLiInA = ThuLI.appendChild(ThuA);
 
         // Friday
@@ -81,8 +83,8 @@ export class Design{
         const FriA = document.createElement('a');
         FriA.classList.add('Widget-menu-a');
         // var  LI = widgetUL.appendChild(widgetLI);
-        FriA.href='#Fri';
-        FriA.innerText= "Fri"
+        FriA.href = '#Fri';
+        FriA.innerText = "Fri"
         var FriLiInA = FriLI.appendChild(FriA);
 
         // Saturday
@@ -91,8 +93,8 @@ export class Design{
         const SatA = document.createElement('a');
         SatA.classList.add('Widget-menu-a');
         // var  LI = widgetUL.appendChild(widgetLI);
-        SatA.href='#Sat';
-        SatA.innerText= "Sat"
+        SatA.href = '#Sat';
+        SatA.innerText = "Sat"
         var SatLiInA = SatLI.appendChild(SatA);
 
         //sunday
@@ -101,8 +103,8 @@ export class Design{
         const SunA = document.createElement('a');
         SunA.classList.add('Widget-menu-a');
         // var  LI = widgetUL.appendChild(widgetLI);
-        SunA.href='#Sun';
-        SunA.innerText= "Sun"
+        SunA.href = '#Sun';
+        SunA.innerText = "Sun"
         var SunLiInA = SunLI.appendChild(SunA);
 
 
@@ -112,54 +114,6 @@ export class Design{
         widgetSectionDiv.classList.add("widget-section");
         const WidgetSectionUl = document.createElement("ul");
         WidgetSectionUl.classList.add('widget-section-ul');
-        const widgetContentLi = document.createElement('li');
-        widgetContentLi.classList.add('widget-content');
-        const widgetContentImage = document.createElement('div');
-        widgetContentImage.classList.add('widget-content-image');
-        const widgetContentImgTag = document.createElement('img');
-        widgetContentImgTag.src = 'assets/chat.svg';
-        // widgetContentImgTag.alt = "#";
-        const widgetArticle = document.createElement('div');
-        widgetArticle.classList.add('widget-article');
-        const widgetArticleHeading = document.createElement('div');
-        widgetArticleHeading.classList.add('widget-article-heading');
-        widgetArticleHeading.innerText="Lorem ipsum dolor sit h.";
-        const widgetTime = document.createElement('div');
-        widgetTime.classList.add('widget-time');
-        widgetTime.innerText = '10:00 PM - 12.00 AM';
-        const widgetDescription = document.createElement('div');
-        widgetDescription.classList.add('widget-description');
-        widgetDescription.innerText = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, autem';
-
-
-
-        // widgetUL.appendChild(widgetLI)
-        const widgetContentLi1 = document.createElement('li');
-        widgetContentLi1.classList.add('widget-content');
-        const widgetContentImage1 = document.createElement('div');
-        // const widgetContentImage1 = widgetContentImage+li;
-        widgetContentImage1.classList.add('widget-content-image');
-        const widgetContentImgTag1= document.createElement('img');
-        widgetContentImgTag1.src = 'assets/chat.svg';
-        // widgetContentImgTag1.alt = "#";
-        const widgetArticle1 = document.createElement('div');
-        widgetArticle1.classList.add('widget-article');
-        const widgetArticleHeading1 = document.createElement('div');
-        widgetArticleHeading1.classList.add('widget-article-heading');
-        widgetArticleHeading1.innerText="Lorem ipsum dolor sit h.";
-        const widgetTime1 = document.createElement('div');
-        widgetTime1.classList.add('widget-time');
-        widgetTime1.innerText = '10:00 PM - 12.00 AM';
-        const widgetDescription1 = document.createElement('div');
-        widgetDescription1.classList.add('widget-description');
-        widgetDescription1.innerText = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, autem';
-
-
-        for( var li = 0; li<10; li++){
-
-
-        }
-
 
 
 
@@ -176,22 +130,50 @@ export class Design{
         widgetUL.appendChild(SunLI);
         buttonContainer.appendChild(widgetSectionDiv);
         widgetSectionDiv.appendChild(WidgetSectionUl);
-        WidgetSectionUl.appendChild(widgetContentLi);
-        widgetContentLi.appendChild(widgetContentImage);
-        widgetContentImage.appendChild(widgetContentImgTag);
-        widgetContentLi.appendChild(widgetArticle);
-        widgetArticle.appendChild(widgetArticleHeading);
-        widgetArticle.appendChild(widgetTime);
-        widgetArticle.appendChild(widgetDescription);
 
-        WidgetSectionUl.appendChild(widgetContentLi1);
-        widgetContentLi1.appendChild(widgetContentImage1);
-        widgetContentImage1.appendChild(widgetContentImgTag1);
-        widgetContentLi1.appendChild(widgetArticle1);
-        widgetArticle1.appendChild(widgetArticleHeading1);
-        widgetArticle1.appendChild(widgetTime1);
-        widgetArticle1.appendChild(widgetDescription1);
 
+
+
+        var request = new XMLHttpRequest();
+        request.open('GET', 'https://jsonplaceholder.typicode.com/posts', true);
+        request.send();
+        request.onreadystatechange = function handleRequest(){
+
+            if (request.readyState === 4 && request.status === 200){
+                var data = JSON.parse(request.responseText);
+                data.forEach(function (singleData){
+                    const widgetContentLi = document.createElement('li');
+                    widgetContentLi.classList.add('widget-content');
+                    const widgetContentImage = document.createElement('div');
+                    widgetContentImage.classList.add('widget-content-image');
+                    const widgetContentImgTag = document.createElement('img');
+                    widgetContentImgTag.src = 'assets/chat.svg';
+                    // widgetContentImgTag.alt = "#";
+                    const widgetArticle = document.createElement('div');
+                    widgetArticle.classList.add('widget-article');
+                    const widgetArticleHeading = document.createElement('div');
+                    widgetArticleHeading.classList.add('widget-article-heading');
+                    widgetArticleHeading.innerText = singleData.title;
+                    const widgetTime = document.createElement('div');
+                    widgetTime.classList.add('widget-time');
+                    widgetTime.innerText = '10:00 PM - 12.00 AM';
+                    const widgetDescription = document.createElement('div');
+                    widgetDescription.classList.add('widget-description');
+                    widgetDescription.innerText = singleData.title;
+
+                    WidgetSectionUl.appendChild(widgetContentLi);
+                    widgetContentLi.appendChild(widgetContentImage);
+                    widgetContentImage.appendChild(widgetContentImgTag);
+                    widgetContentLi.appendChild(widgetArticle);
+                    widgetArticle.appendChild(widgetArticleHeading);
+                    widgetArticle.appendChild(widgetTime);
+                    widgetArticle.appendChild(widgetDescription);
+                })
+
+
+                // console.log(JSON.parse(request.responseText));
+            }
+        }
 
 
 
@@ -199,14 +181,14 @@ export class Design{
     }
 
 
-    activeLi(){
+    activeLi() {
         // ACTIVE MENU
 
         var selectMenuClass = document.querySelectorAll('.Widget-menu-a');
         const date = new Date();
         const day = date.getDay()
         console.log(day)
-        switch (day){
+        switch (day) {
             case 1:
                 selectMenuClass[0].classList.add('Widget-active');
                 break;
@@ -236,15 +218,15 @@ export class Design{
         console.log(navbar);
 
         navbar.forEach(element => {
-            element.addEventListener("click", function (){
-                navbar.forEach(nav=>nav.classList.remove("Widget-active"))
+            element.addEventListener("click", function () {
+                navbar.forEach(nav => nav.classList.remove("Widget-active"))
                 this.classList.add("Widget-active");
             })
         })
     }
 
 
-    createStyles(){
+    createStyles() {
         const styleTag = document.createElement('style');
         document.head.appendChild(styleTag);
         styleTag.innerHTML = `
@@ -311,8 +293,8 @@ export class Design{
     display: none;
 }
 .widget-section-ul{
-    width: 298px;
-    height: 400px;
+    width: 297px;
+    height: 316px;
     background: #212848;
     padding: 1px;
     overflow: hidden;
@@ -335,6 +317,7 @@ export class Design{
     float: left;
     /*margin-right: 10px;*/
     margin-top: 2px;
+    height:100px
 
 }
 .widget-content-image img{
