@@ -133,9 +133,57 @@ export class Design {
 
 
 
-
+        //
+        // var request = new XMLHttpRequest();
+        // request.open('GET', 'https://jsonplaceholder.typicode.com/posts', true);
+        // request.send();
+        // request.onreadystatechange = function handleRequest(){
+        //
+        //     if (request.readyState === 4 && request.status === 200){
+        //         var data = JSON.parse(request.responseText);
+        //         data.forEach(function (singleData){
+        //             const widgetContentLi = document.createElement('li');
+        //             widgetContentLi.classList.add('widget-content');
+        //             const widgetContentImage = document.createElement('div');
+        //             widgetContentImage.classList.add('widget-content-image');
+        //             const widgetContentImgTag = document.createElement('img');
+        //             widgetContentImgTag.src = 'assets/chat.svg';
+        //             // widgetContentImgTag.alt = "#";
+        //             const widgetArticle = document.createElement('div');
+        //             widgetArticle.classList.add('widget-article');
+        //             const widgetArticleHeading = document.createElement('div');
+        //             widgetArticleHeading.classList.add('widget-article-heading');
+        //             widgetArticleHeading.innerText = singleData.title;
+        //             const widgetTime = document.createElement('div');
+        //             widgetTime.classList.add('widget-time');
+        //             widgetTime.innerText = '10:00 PM - 12.00 AM';
+        //             const widgetDescription = document.createElement('div');
+        //             widgetDescription.classList.add('widget-description');
+        //             widgetDescription.innerText = singleData.title;
+        //
+        //             WidgetSectionUl.appendChild(widgetContentLi);
+        //             widgetContentLi.appendChild(widgetContentImage);
+        //             widgetContentImage.appendChild(widgetContentImgTag);
+        //             widgetContentLi.appendChild(widgetArticle);
+        //             widgetArticle.appendChild(widgetArticleHeading);
+        //             widgetArticle.appendChild(widgetTime);
+        //             widgetArticle.appendChild(widgetDescription);
+        //         })
+        //
+        //
+        //         // console.log(JSON.parse(request.responseText));
+        //     }
+        // }
+        //
         var request = new XMLHttpRequest();
-        request.open('GET', 'https://jsonplaceholder.typicode.com/posts', true);
+
+        request.open('GET', 'https://shadypinesradio.herokuapp.com/api/widget/', true);
+        request.setRequestHeader('Content-Type', 'application/json');
+        request.setRequestHeader('Accept', 'application/json');
+        // request.setRequestHeader('Origin','http://localhost:1234/');
+        request.setRequestHeader('Access-Control-Allow-Origin', 'http://localhost:1234/');
+        request.setRequestHeader('Access-Control-Allow-Credentials', 'true');
+
         request.send();
         request.onreadystatechange = function handleRequest(){
 
@@ -171,11 +219,9 @@ export class Design {
                 })
 
 
-                // console.log(JSON.parse(request.responseText));
+                console.log(JSON.parse(request.responseText));
             }
         }
-
-
 
 
     }
