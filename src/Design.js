@@ -178,36 +178,57 @@ export class Design {
         var request = new XMLHttpRequest();
 
         request.open('GET', 'https://shadypinesradio.herokuapp.com/api/widget/', true);
-        request.setRequestHeader('Content-Type', 'application/json');
-        request.setRequestHeader('Accept', 'application/json');
-        // request.setRequestHeader('Origin','http://localhost:1234/');
-        request.setRequestHeader('Access-Control-Allow-Origin', 'http://localhost:1234/');
-        request.setRequestHeader('Access-Control-Allow-Credentials', 'true');
 
         request.send();
         request.onreadystatechange = function handleRequest(){
 
             if (request.readyState === 4 && request.status === 200){
-                var data = JSON.parse(request.responseText);
-                data.forEach(function (singleData){
+                var data = JSON.parse(request.response);
+                // var fri = JSON.parse(data.Fri)
+                console.log(data.data.Friday)
+                var fridayData = data.data.Friday
+                fridayData.forEach(function (singleData){
+                    var showImg = singleData.shows[0].image
                     const widgetContentLi = document.createElement('li');
                     widgetContentLi.classList.add('widget-content');
+
                     const widgetContentImage = document.createElement('div');
                     widgetContentImage.classList.add('widget-content-image');
+
                     const widgetContentImgTag = document.createElement('img');
-                    widgetContentImgTag.src = 'assets/chat.svg';
+                    widgetContentImgTag.src = showImg;
                     // widgetContentImgTag.alt = "#";
                     const widgetArticle = document.createElement('div');
                     widgetArticle.classList.add('widget-article');
+
+                    var start_Time = singleData.startTime;
+                    // var H = +start_Time.substr(0, 2);
+                    // var h = H % 12 || 12;
+                    // var ampm = (H < 12 || H === 24) ? "AM" : "PM";
+                    // start_Time = h + start_Time.substr(2, 3) + ampm;
+                    var end_Time = singleData.endTime;
+                    // var H1 = +start_Time.substr(0, 2);
+                    // var h1 = H1 % 12 || 12;
+                    // var ampm1 = (H1 < 12 || H1 === 24) ? "AM" : "PM";
+                    // end_Time = h1 + end_Time.substr(2, 3) + ampm1;
+                    // console.log(end_Time)
+                    var myDate = new Date(start_Time)
+                    var strDate = myDate.toLocaleString("en-US", {timeZone: "America/Los_Angeles"})
+                    var myDate2 = new Date(start_Time)
+                    var endDate = myDate2.toLocaleString("en-US", {timeZone: "America/Los_Angeles"})
+                    console.log(strDate.split(',')[1])
+                    widgetArticle.innerText = strDate.split(',')[1] + '-' + endDate.split(',')[1] + ' (PT)';
                     const widgetArticleHeading = document.createElement('div');
                     widgetArticleHeading.classList.add('widget-article-heading');
-                    widgetArticleHeading.innerText = singleData.title;
+                    widgetArticleHeading.innerText = singleData.shows[0].showName;
+
                     const widgetTime = document.createElement('div');
                     widgetTime.classList.add('widget-time');
-                    widgetTime.innerText = '10:00 PM - 12.00 AM';
+                    widgetTime.innerText = singleData.shows[0].djName;
+
                     const widgetDescription = document.createElement('div');
                     widgetDescription.classList.add('widget-description');
-                    widgetDescription.innerText = singleData.title;
+                    widgetDescription.innerText = singleData.shows[0].showDescription;
 
                     WidgetSectionUl.appendChild(widgetContentLi);
                     widgetContentLi.appendChild(widgetContentImage);
@@ -217,9 +238,6 @@ export class Design {
                     widgetArticle.appendChild(widgetTime);
                     widgetArticle.appendChild(widgetDescription);
                 })
-
-
-                console.log(JSON.parse(request.responseText));
             }
         }
 
@@ -236,7 +254,6 @@ export class Design {
         console.log(day)
         switch (day) {
             case 1:
-                selectMenuClass[0].classList.add('Widget-active');
                 break;
             case 2:
                 selectMenuClass[1].classList.add('Widget-active');
@@ -377,13 +394,14 @@ export class Design {
     width: 300px;    
     color: #ffffff;
     margin-top: 8px;
+    font-size: 12px
 }
 .widget-article-heading{
     font-size: 15px;
 }
 .widget-time{
     margin: 3px;
-    font-size: 15px;
+    font-size: 12px;
 }
 .widget-description{
     font-size: 10px;

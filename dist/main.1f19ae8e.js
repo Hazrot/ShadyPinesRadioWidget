@@ -321,35 +321,55 @@ function () {
 
       var request = new XMLHttpRequest();
       request.open('GET', 'https://shadypinesradio.herokuapp.com/api/widget/', true);
-      request.setRequestHeader('Content-Type', 'application/json');
-      request.setRequestHeader('Accept', 'application/json'); // request.setRequestHeader('Origin','http://localhost:1234/');
-
-      request.setRequestHeader('Access-Control-Allow-Origin', 'http://localhost:1234/');
-      request.setRequestHeader('Access-Control-Allow-Credentials', 'true');
       request.send();
 
       request.onreadystatechange = function handleRequest() {
         if (request.readyState === 4 && request.status === 200) {
-          var data = JSON.parse(request.responseText);
-          data.forEach(function (singleData) {
+          var data = JSON.parse(request.response); // var fri = JSON.parse(data.Fri)
+
+          console.log(data.data.Friday);
+          var fridayData = data.data.Friday;
+          fridayData.forEach(function (singleData) {
+            var showImg = singleData.shows[0].image;
             var widgetContentLi = document.createElement('li');
             widgetContentLi.classList.add('widget-content');
             var widgetContentImage = document.createElement('div');
             widgetContentImage.classList.add('widget-content-image');
             var widgetContentImgTag = document.createElement('img');
-            widgetContentImgTag.src = 'assets/chat.svg'; // widgetContentImgTag.alt = "#";
+            widgetContentImgTag.src = showImg; // widgetContentImgTag.alt = "#";
 
             var widgetArticle = document.createElement('div');
             widgetArticle.classList.add('widget-article');
+            var start_Time = singleData.startTime; // var H = +start_Time.substr(0, 2);
+            // var h = H % 12 || 12;
+            // var ampm = (H < 12 || H === 24) ? "AM" : "PM";
+            // start_Time = h + start_Time.substr(2, 3) + ampm;
+
+            var end_Time = singleData.endTime; // var H1 = +start_Time.substr(0, 2);
+            // var h1 = H1 % 12 || 12;
+            // var ampm1 = (H1 < 12 || H1 === 24) ? "AM" : "PM";
+            // end_Time = h1 + end_Time.substr(2, 3) + ampm1;
+            // console.log(end_Time)
+
+            var myDate = new Date(start_Time);
+            var strDate = myDate.toLocaleString("en-US", {
+              timeZone: "America/Los_Angeles"
+            });
+            var myDate2 = new Date(start_Time);
+            var endDate = myDate2.toLocaleString("en-US", {
+              timeZone: "America/Los_Angeles"
+            });
+            console.log(strDate.split(',')[1]);
+            widgetArticle.innerText = strDate.split(',')[1] + '-' + endDate.split(',')[1] + ' (PT)';
             var widgetArticleHeading = document.createElement('div');
             widgetArticleHeading.classList.add('widget-article-heading');
-            widgetArticleHeading.innerText = singleData.title;
+            widgetArticleHeading.innerText = singleData.shows[0].showName;
             var widgetTime = document.createElement('div');
             widgetTime.classList.add('widget-time');
-            widgetTime.innerText = '10:00 PM - 12.00 AM';
+            widgetTime.innerText = singleData.shows[0].djName;
             var widgetDescription = document.createElement('div');
             widgetDescription.classList.add('widget-description');
-            widgetDescription.innerText = singleData.title;
+            widgetDescription.innerText = singleData.shows[0].showDescription;
             WidgetSectionUl.appendChild(widgetContentLi);
             widgetContentLi.appendChild(widgetContentImage);
             widgetContentImage.appendChild(widgetContentImgTag);
@@ -358,7 +378,6 @@ function () {
             widgetArticle.appendChild(widgetTime);
             widgetArticle.appendChild(widgetDescription);
           });
-          console.log(JSON.parse(request.responseText));
         }
       };
     }
@@ -373,7 +392,6 @@ function () {
 
       switch (day) {
         case 1:
-          selectMenuClass[0].classList.add('Widget-active');
           break;
 
         case 2:
@@ -420,7 +438,7 @@ function () {
     value: function createStyles() {
       var styleTag = document.createElement('style');
       document.head.appendChild(styleTag);
-      styleTag.innerHTML = "\n            body{\n    font-family:  Arial, Helvetica, sans-serif;\n\n}\n\n/*---------------------------------------------------------menu-bar---------------------------------*/\n.wrapper{\n    width: 300px;   \n    float: right;\n    background: #121f5f;\n    max-height: 400px;  \n    min-height: 400px;\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);\n    right: -25px;\n    bottom: 75px;\n    position: absolute;\n    transition: max-height .2s ease;\n    font-family: Helvetica, Arial ,sans-serif;\n}\n.widget-menu{\n    width: 300px;\n    margin: 0 auto;\n}\n\n.Widget-menu-ul{\n   \n    padding-left: 6px;\n\n}\n\n.Widget-menu-li{\n    float: left;\n    list-style: none;\n    margin: 0.5px;\n}\n\n.Widget-menu-a{\n    text-decoration: none;\n    display: block;\n    padding: 7px 7px;\n    font-size:15px;\n    \n    border-radius: 6px;\n    color: #ffffff;\n    margin-top: 20px;\n}\n.Widget-menu-a:hover{\n    background: black;\n    color: #ffffff;\n}\n\n.Widget-active{\n    background: black;\n    color: #ffffff;\n}\n.widget-section{\n    padding-top: 50px;\n\n}\n::-webkit-scrollbar{\n    display: none;\n}\n.widget-section-ul{\n    width: 297px;\n    height: 316px;\n    background: #212848;\n    padding: 1px;\n    overflow: hidden;\n    overflow-y: scroll;\n\n}\n.widget-content{\n    width: 300px;\n    margin: 0 auto;\n    border-bottom: 1px solid #ffffff;\n    overflow: hidden;\n}\n\n.widget-content:last-child{\n    border-bottom: none;\n}\n\n.widget-content-image{\n    width: 90px;   \n    float: left;\n    /*margin-right: 10px;*/\n    margin-top: 2px;\n    height:100px\n\n}\n.widget-content-image img{\n    border: 1px  solid black;\n    border-radius: 10px;\n    width: 80px;\n    // height: 100px;\n\n}\n.widget-article{\n    width: 300px;    \n    color: #ffffff;\n    margin-top: 8px;\n}\n.widget-article-heading{\n    font-size: 15px;\n}\n.widget-time{\n    margin: 3px;\n    font-size: 15px;\n}\n.widget-description{\n    font-size: 10px;\n} ";
+      styleTag.innerHTML = "\n            body{\n    font-family:  Arial, Helvetica, sans-serif;\n\n}\n\n/*---------------------------------------------------------menu-bar---------------------------------*/\n.wrapper{\n    width: 300px;   \n    float: right;\n    background: #121f5f;\n    max-height: 400px;  \n    min-height: 400px;\n    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);\n    right: -25px;\n    bottom: 75px;\n    position: absolute;\n    transition: max-height .2s ease;\n    font-family: Helvetica, Arial ,sans-serif;\n}\n.widget-menu{\n    width: 300px;\n    margin: 0 auto;\n}\n\n.Widget-menu-ul{\n   \n    padding-left: 6px;\n\n}\n\n.Widget-menu-li{\n    float: left;\n    list-style: none;\n    margin: 0.5px;\n}\n\n.Widget-menu-a{\n    text-decoration: none;\n    display: block;\n    padding: 7px 7px;\n    font-size:15px;\n    \n    border-radius: 6px;\n    color: #ffffff;\n    margin-top: 20px;\n}\n.Widget-menu-a:hover{\n    background: black;\n    color: #ffffff;\n}\n\n.Widget-active{\n    background: black;\n    color: #ffffff;\n}\n.widget-section{\n    padding-top: 50px;\n\n}\n::-webkit-scrollbar{\n    display: none;\n}\n.widget-section-ul{\n    width: 297px;\n    height: 316px;\n    background: #212848;\n    padding: 1px;\n    overflow: hidden;\n    overflow-y: scroll;\n\n}\n.widget-content{\n    width: 300px;\n    margin: 0 auto;\n    border-bottom: 1px solid #ffffff;\n    overflow: hidden;\n}\n\n.widget-content:last-child{\n    border-bottom: none;\n}\n\n.widget-content-image{\n    width: 90px;   \n    float: left;\n    /*margin-right: 10px;*/\n    margin-top: 2px;\n    height:100px\n\n}\n.widget-content-image img{\n    border: 1px  solid black;\n    border-radius: 10px;\n    width: 80px;\n    // height: 100px;\n\n}\n.widget-article{\n    width: 300px;    \n    color: #ffffff;\n    margin-top: 8px;\n    font-size: 12px\n}\n.widget-article-heading{\n    font-size: 15px;\n}\n.widget-time{\n    margin: 3px;\n    font-size: 12px;\n}\n.widget-description{\n    font-size: 10px;\n} ";
     }
   }]);
 
@@ -462,7 +480,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45981" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61058" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
