@@ -331,48 +331,118 @@ function () {
 
           console.log(JSON.parse(request.responseText));
           var dayData = null; // console.log(dayData)
+          // switch (day) {
+          //     case 1:
+          //         dayData = data.data.Monday;
+          //         console.log("Monday");
+          //         console.log(dayData);
+          //
+          //
+          //         break;
+          //     case 2:
+          //         dayData = data.data.Tuesday;
+          //         console.log("Tuesday");
+          //         break;
+          //     case 3:
+          //         dayData = data.data.Wednesday;
+          //         console.log("Wednesday");
+          //         break;
+          //     case 4:
+          //         dayData = data.data.Thursday;
+          //         console.log("Thursday")
+          //         break;
+          //     case 5:
+          //         dayData = data.data.Friday;
+          //         console.log("Friday")
+          //         break;
+          //     case 6:
+          //         dayData = data.data.Saturday;
+          //         console.log("Saturday");
+          //         break;
+          //     case 0:
+          //         dayData = data.data.Sunday;
+          //         console.log("Sunday")
+          //         break;
+          //     default:
+          //
+          //
+          // }
+          // dayData.forEach(function (singleData){
+          //     var showImg = singleData.shows[0].image
+          //     const widgetContentLi = document.createElement('li');
+          //     widgetContentLi.classList.add('widget-content');
+          //
+          //     const widgetContentImage = document.createElement('div');
+          //     widgetContentImage.classList.add('widget-content-image');
+          //
+          //     const widgetContentImgTag = document.createElement('img');
+          //     widgetContentImgTag.src = showImg;
+          //     // widgetContentImgTag.alt = "#";
+          //     const widgetArticle = document.createElement('div');
+          //     widgetArticle.classList.add('widget-article');
+          //
+          //     var start_Time = singleData.startTime;
+          //     // var H = +start_Time.substr(0, 2);
+          //     // var h = H % 12 || 12;
+          //     // var ampm = (H < 12 || H === 24) ? "AM" : "PM";
+          //     // start_Time = h + start_Time.substr(2, 3) + ampm;
+          //     var end_Time = singleData.endTime;
+          //     // var H1 = +start_Time.substr(0, 2);
+          //     // var h1 = H1 % 12 || 12;
+          //     // var ampm1 = (H1 < 12 || H1 === 24) ? "AM" : "PM";
+          //     // end_Time = h1 + end_Time.substr(2, 3) + ampm1;
+          //     // console.log(end_Time)
+          //     var myDate = new Date(start_Time)
+          //     var strDate = myDate.toLocaleString("en-US", {timeZone: "America/Los_Angeles"})
+          //     var myDate2 = new Date(end_Time)
+          //     var endDate = myDate2.toLocaleString("en-US", {timeZone: "America/Los_Angeles"})
+          //     console.log(strDate.split(',')[1])
+          //     widgetArticle.innerText = strDate.split(',')[1] + '-' + endDate.split(',')[1] + ' (PT)';
+          //     const widgetArticleHeading = document.createElement('div');
+          //     widgetArticleHeading.classList.add('widget-article-heading');
+          //     widgetArticleHeading.innerText = singleData.shows[0].showName;
+          //
+          //     const widgetTime = document.createElement('div');
+          //     widgetTime.classList.add('widget-time');
+          //     widgetTime.innerText = singleData.shows[0].djName;
+          //
+          //     const widgetDescription = document.createElement('div');
+          //     widgetDescription.classList.add('widget-description');
+          //     widgetDescription.innerText = singleData.shows[0].showDescription;
+          //
+          //     WidgetSectionUl.appendChild(widgetContentLi);
+          //     widgetContentLi.appendChild(widgetContentImage);
+          //     widgetContentImage.appendChild(widgetContentImgTag);
+          //     widgetContentLi.appendChild(widgetArticle);
+          //     widgetArticle.appendChild(widgetArticleHeading);
+          //     widgetArticle.appendChild(widgetTime);
+          //     widgetArticle.appendChild(widgetDescription);
+          //
+          // })
 
-          switch (day) {
-            case 1:
-              dayData = data.data.Monday;
-              console.log("Monday");
-              console.log(dayData);
-              break;
+          var navbar = document.querySelectorAll('.Widget-menu-a');
+          console.log(navbar);
+          var clickDayData = null;
 
-            case 2:
-              dayData = data.data.Tuesday;
-              console.log("Tuesday");
-              break;
-
-            case 3:
-              dayData = data.data.Wednesday;
-              console.log("Wednesday");
-              break;
-
-            case 4:
-              dayData = data.data.Thursday;
-              console.log("Thursday");
-              break;
-
-            case 5:
-              dayData = data.data.Friday;
-              console.log("Friday");
-              break;
-
-            case 6:
-              dayData = data.data.Saturday;
-              console.log("Saturday");
-              break;
-
-            case 0:
-              dayData = data.data.Sunday;
-              console.log("Sunday");
-              break;
-
-            default:
+          if (parseInt(sessionStorage.getItem("dayname")) === 7) {
+            clickDayData = data.data.Sunday;
+          } else if (parseInt(sessionStorage.getItem("dayname")) === 2) {
+            clickDayData = data.data.Tuesday;
+          } else if (parseInt(sessionStorage.getItem("dayname")) === 3) {
+            clickDayData = data.data.Wednesday;
+          } else if (parseInt(sessionStorage.getItem("dayname") === 4)) {
+            clickDayData = data.data.Thursday;
+          } else if (parseInt(sessionStorage.getItem("dayname")) === 5) {
+            clickDayData = data.data.Friday;
+          } else if (parseInt(sessionStorage.getItem("dayname")) === 6) {
+            clickDayData = data.data.Saturday;
+          } else {
+            clickDayData = data.data.Monday;
           }
 
-          dayData.forEach(function (singleData) {
+          console.log("dayname:", sessionStorage.getItem("dayname"));
+          console.log("all data click ", clickDayData);
+          var dayId = clickDayData.forEach(function (singleData) {
             var showImg = singleData.shows[0].image;
             var widgetContentLi = document.createElement('li');
             widgetContentLi.classList.add('widget-content');
@@ -403,16 +473,16 @@ function () {
               timeZone: "America/Los_Angeles"
             });
             console.log(strDate.split(',')[1]);
-            widgetArticle.innerText = strDate.split(',')[1] + '-' + endDate.split(',')[1] + ' (PT)';
+            widgetArticle.innerHTML = strDate.split(',')[1] + '-' + endDate.split(',')[1] + ' (PT)';
             var widgetArticleHeading = document.createElement('div');
             widgetArticleHeading.classList.add('widget-article-heading');
-            widgetArticleHeading.innerText = singleData.shows[0].showName;
+            widgetArticleHeading.innerHTML = singleData.shows[0].showName;
             var widgetTime = document.createElement('div');
             widgetTime.classList.add('widget-time');
-            widgetTime.innerText = singleData.shows[0].djName;
+            widgetTime.innerHTML = singleData.shows[0].djName;
             var widgetDescription = document.createElement('div');
             widgetDescription.classList.add('widget-description');
-            widgetDescription.innerText = singleData.shows[0].showDescription;
+            widgetDescription.innerHTML = singleData.shows[0].showDescription;
             WidgetSectionUl.appendChild(widgetContentLi);
             widgetContentLi.appendChild(widgetContentImage);
             widgetContentImage.appendChild(widgetContentImgTag);
@@ -420,108 +490,72 @@ function () {
             widgetArticle.appendChild(widgetArticleHeading);
             widgetArticle.appendChild(widgetTime);
             widgetArticle.appendChild(widgetDescription);
-          });
-          var navbar = document.querySelectorAll('.Widget-menu-a');
-          console.log(navbar);
-          var clickDayData = null;
-          console.log(clickDayData);
+          }); // console.log(clickDayData)
+
           navbar.forEach(function (element) {
             // console.log(element)
             element.addEventListener("click", function () {
               var activeDay = document.querySelector('.Widget-active'); // console.log(activeDay.innerText);
 
-              console.log(JSON.parse(request.responseText));
+              console.log(JSON.parse(request.responseText)); // const container = document.querySelector('#widget-section-ul');
+              //
+              //         while (parent.firstChild) {
+              //              container.removeChild(parent.firstChild);
+              //         }
 
               switch (activeDay.innerText) {
                 case 'Mon':
-                  clickDayData = data.data.Monday;
-                  console.log("Monday");
+                  // clickDayData = data.data.Monday;
+                  console.log("Monday 1");
                   console.log();
+                  sessionStorage.setItem("dayname", 1);
+                  window.location.reload();
                   break;
 
                 case 'Tue':
-                  clickDayData = data.data.Tuesday;
-                  console.log("Tuesday");
+                  // clickDayData = data.data.Tuesday;
+                  console.log("Tuesday 1");
+                  sessionStorage.setItem("dayname", 2);
+                  window.location.reload();
                   break;
 
                 case 'Wed':
-                  clickDayData = data.data.Wednesday;
-                  console.log("Wednesday");
+                  // clickDayData = data.data.Wednesday;
+                  sessionStorage.setItem("dayname", 3);
+                  console.log("Wednesday 1");
+                  window.location.reload();
                   break;
 
                 case 'Thu':
                   clickDayData = data.data.Thursday;
-                  console.log("Thursday");
+                  console.log("Thursday 1");
+                  sessionStorage.setItem("dayname", 4);
+                  window.location.reload();
                   break;
 
                 case 'Fri':
-                  clickDayData = data.data.Friday;
-                  console.log("Friday");
+                  // clickDayData = data.data.Friday;
+                  console.log("Friday 1");
+                  sessionStorage.setItem("dayname", 5);
+                  window.location.reload();
                   break;
 
                 case 'Sat':
-                  clickDayData = data.data.Saturday;
-                  console.log("Saturday");
+                  // clickDayData = data.data.Saturday;
+                  sessionStorage.setItem("dayname", 6);
+                  console.log("Saturday 1");
+                  window.location.reload();
                   break;
 
                 case 'Sun':
-                  clickDayData = data.data.Sunday;
-                  console.log("Sunday");
+                  sessionStorage.setItem("dayname", 7);
+                  console.log("Sunday 1");
+                  window.location.reload();
                   break;
 
                 default:
               } // this.classList.add("Widget-active");
 
-
-              clickDayData.forEach(function (singleData) {
-                var showImg = singleData.shows[0].image;
-                var widgetContentLi = document.createElement('li');
-                widgetContentLi.classList.add('widget-content');
-                var widgetContentImage = document.createElement('div');
-                widgetContentImage.classList.add('widget-content-image');
-                var widgetContentImgTag = document.createElement('img');
-                widgetContentImgTag.src = showImg; // widgetContentImgTag.alt = "#";
-
-                var widgetArticle = document.createElement('div');
-                widgetArticle.classList.add('widget-article');
-                var start_Time = singleData.startTime; // var H = +start_Time.substr(0, 2);
-                // var h = H % 12 || 12;
-                // var ampm = (H < 12 || H === 24) ? "AM" : "PM";
-                // start_Time = h + start_Time.substr(2, 3) + ampm;
-
-                var end_Time = singleData.endTime; // var H1 = +start_Time.substr(0, 2);
-                // var h1 = H1 % 12 || 12;
-                // var ampm1 = (H1 < 12 || H1 === 24) ? "AM" : "PM";
-                // end_Time = h1 + end_Time.substr(2, 3) + ampm1;
-                // console.log(end_Time)
-
-                var myDate = new Date(start_Time);
-                var strDate = myDate.toLocaleString("en-US", {
-                  timeZone: "America/Los_Angeles"
-                });
-                var myDate2 = new Date(end_Time);
-                var endDate = myDate2.toLocaleString("en-US", {
-                  timeZone: "America/Los_Angeles"
-                });
-                console.log(strDate.split(',')[1]);
-                widgetArticle.innerText = strDate.split(',')[1] + '-' + endDate.split(',')[1] + ' (PT)';
-                var widgetArticleHeading = document.createElement('div');
-                widgetArticleHeading.classList.add('widget-article-heading');
-                widgetArticleHeading.innerText = singleData.shows[0].showName;
-                var widgetTime = document.createElement('div');
-                widgetTime.classList.add('widget-time');
-                widgetTime.innerText = singleData.shows[0].djName;
-                var widgetDescription = document.createElement('div');
-                widgetDescription.classList.add('widget-description');
-                widgetDescription.innerText = singleData.shows[0].showDescription;
-                WidgetSectionUl.appendChild(widgetContentLi);
-                widgetContentLi.appendChild(widgetContentImage);
-                widgetContentImage.appendChild(widgetContentImgTag);
-                widgetContentLi.appendChild(widgetArticle);
-                widgetArticle.appendChild(widgetArticleHeading);
-                widgetArticle.appendChild(widgetTime);
-                widgetArticle.appendChild(widgetDescription);
-              });
             });
           });
         }
@@ -538,38 +572,47 @@ function () {
 
       console.log(day);
 
-      switch (day) {
-        case 1:
-          break;
+      if (parseInt(sessionStorage.getItem("dayname")) === 7) {
+        selectMenuClass[6].classList.add('Widget-active');
+      } else if (parseInt(sessionStorage.getItem("dayname")) === 2) {
+        selectMenuClass[1].classList.add('Widget-active');
+      } else if (parseInt(sessionStorage.getItem("dayname")) === 3) {
+        selectMenuClass[2].classList.add('Widget-active');
+      } else if (parseInt(sessionStorage.getItem("dayname") === 4)) {
+        selectMenuClass[3].classList.add('Widget-active');
+      } else if (parseInt(sessionStorage.getItem("dayname")) === 5) {
+        selectMenuClass[4].classList.add('Widget-active');
+      } else if (parseInt(sessionStorage.getItem("dayname")) === 6) {
+        selectMenuClass[5].classList.add('Widget-active');
+      } else {
+        selectMenuClass[0].classList.add('Widget-active');
+      } // switch (day) {
+      //     case 1:
+      //         break;
+      //     case 2:
+      //         selectMenuClass[1].classList.add('Widget-active');
+      //         break;
+      //     case 3:
+      //         selectMenuClass[2].classList.add('Widget-active');
+      //         break;
+      //     case 4:
+      //         selectMenuClass[3].classList.add('Widget-active');
+      //         break;
+      //     case 5:
+      //         selectMenuClass[4].classList.add('Widget-active');
+      //         console.log("Friday")
+      //         break;
+      //     case 6:
+      //         selectMenuClass[5].classList.add('Widget-active');
+      //         break;
+      //     case 0:
+      //         selectMenuClass[6].classList.add('Widget-active');
+      //         break;
+      //     default:
+      //         selectMenuClass[1].classList.add('Widget-active');
+      //
+      // }
 
-        case 2:
-          selectMenuClass[1].classList.add('Widget-active');
-          break;
-
-        case 3:
-          selectMenuClass[2].classList.add('Widget-active');
-          break;
-
-        case 4:
-          selectMenuClass[3].classList.add('Widget-active');
-          break;
-
-        case 5:
-          selectMenuClass[4].classList.add('Widget-active');
-          console.log("Friday");
-          break;
-
-        case 6:
-          selectMenuClass[5].classList.add('Widget-active');
-          break;
-
-        case 0:
-          selectMenuClass[6].classList.add('Widget-active');
-          break;
-
-        default:
-          selectMenuClass[1].classList.add('Widget-active');
-      }
 
       var navbar = document.querySelector('.widget-menu').querySelectorAll('a');
       console.log(navbar);
@@ -630,7 +673,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39685" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53275" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
