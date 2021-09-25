@@ -181,13 +181,58 @@ export class Design {
 
         request.send();
         request.onreadystatechange = function handleRequest(){
-
             if (request.readyState === 4 && request.status === 200){
+                const date = new Date();
+                const day = date.getDay();
                 var data = JSON.parse(request.response);
                 // var fri = JSON.parse(data.Fri)
-                console.log(data.data.Friday)
-                var fridayData = data.data.Friday
-                fridayData.forEach(function (singleData){
+                console.log(JSON.parse(request.responseText));
+                var dayData = null;
+                // console.log(dayData)
+
+
+
+
+                switch (day) {
+                    case 1:
+                        dayData = data.data.Monday;
+                        console.log("Monday");
+                        console.log(dayData);
+
+
+                        break;
+                    case 2:
+                        dayData = data.data.Tuesday;
+                        console.log("Tuesday");
+                        break;
+                    case 3:
+                        dayData = data.data.Wednesday;
+                        console.log("Wednesday");
+                        break;
+                    case 4:
+                        dayData = data.data.Thursday;
+                        console.log("Thursday")
+                        break;
+                    case 5:
+                        dayData = data.data.Friday;
+                        console.log("Friday")
+                        break;
+                    case 6:
+                        dayData = data.data.Saturday;
+                        console.log("Saturday");
+                        break;
+                    case 0:
+                        dayData = data.data.Sunday;
+                        console.log("Sunday")
+                        break;
+                    default:
+
+
+                }
+
+
+
+                dayData.forEach(function (singleData){
                     var showImg = singleData.shows[0].image
                     const widgetContentLi = document.createElement('li');
                     widgetContentLi.classList.add('widget-content');
@@ -214,7 +259,7 @@ export class Design {
                     // console.log(end_Time)
                     var myDate = new Date(start_Time)
                     var strDate = myDate.toLocaleString("en-US", {timeZone: "America/Los_Angeles"})
-                    var myDate2 = new Date(start_Time)
+                    var myDate2 = new Date(end_Time)
                     var endDate = myDate2.toLocaleString("en-US", {timeZone: "America/Los_Angeles"})
                     console.log(strDate.split(',')[1])
                     widgetArticle.innerText = strDate.split(',')[1] + '-' + endDate.split(',')[1] + ' (PT)';
@@ -237,7 +282,109 @@ export class Design {
                     widgetArticle.appendChild(widgetArticleHeading);
                     widgetArticle.appendChild(widgetTime);
                     widgetArticle.appendChild(widgetDescription);
+
                 })
+                var navbar = document.querySelectorAll('.Widget-menu-a');
+                console.log(navbar);
+                var clickDayData = null;
+                console.log(clickDayData)
+                navbar.forEach(function (element) {
+                    // console.log(element)
+                    element.addEventListener("click", function () {
+                        var activeDay = document.querySelector('.Widget-active');
+                        // console.log(activeDay.innerText);
+                        console.log(JSON.parse(request.responseText));
+
+                        switch (activeDay.innerText) {
+                            case 'Mon':
+                                clickDayData = data.data.Monday;
+                                console.log("Monday");
+                                console.log();
+                                break;
+                            case 'Tue':
+                                clickDayData = data.data.Tuesday;
+                                console.log("Tuesday");
+                                break;
+                            case 'Wed':
+                                clickDayData = data.data.Wednesday;
+                                console.log("Wednesday");
+                                break;
+                            case 'Thu':
+                                clickDayData = data.data.Thursday;
+                                console.log("Thursday")
+                                break;
+                            case 'Fri':
+                                clickDayData = data.data.Friday;
+                                console.log("Friday")
+                                break;
+                            case 'Sat':
+                                clickDayData = data.data.Saturday;
+                                console.log("Saturday");
+                                break;
+                            case 'Sun':
+                                clickDayData = data.data.Sunday;
+                                console.log("Sunday")
+                                break;
+                            default:
+
+
+                        }
+                        // this.classList.add("Widget-active");
+                        clickDayData.forEach(function (singleData){
+                            var showImg = singleData.shows[0].image
+                            const widgetContentLi = document.createElement('li');
+                            widgetContentLi.classList.add('widget-content');
+
+                            const widgetContentImage = document.createElement('div');
+                            widgetContentImage.classList.add('widget-content-image');
+
+                            const widgetContentImgTag = document.createElement('img');
+                            widgetContentImgTag.src = showImg;
+                            // widgetContentImgTag.alt = "#";
+                            const widgetArticle = document.createElement('div');
+                            widgetArticle.classList.add('widget-article');
+
+                            var start_Time = singleData.startTime;
+                            // var H = +start_Time.substr(0, 2);
+                            // var h = H % 12 || 12;
+                            // var ampm = (H < 12 || H === 24) ? "AM" : "PM";
+                            // start_Time = h + start_Time.substr(2, 3) + ampm;
+                            var end_Time = singleData.endTime;
+                            // var H1 = +start_Time.substr(0, 2);
+                            // var h1 = H1 % 12 || 12;
+                            // var ampm1 = (H1 < 12 || H1 === 24) ? "AM" : "PM";
+                            // end_Time = h1 + end_Time.substr(2, 3) + ampm1;
+                            // console.log(end_Time)
+                            var myDate = new Date(start_Time)
+                            var strDate = myDate.toLocaleString("en-US", {timeZone: "America/Los_Angeles"})
+                            var myDate2 = new Date(end_Time)
+                            var endDate = myDate2.toLocaleString("en-US", {timeZone: "America/Los_Angeles"})
+                            console.log(strDate.split(',')[1])
+                            widgetArticle.innerText = strDate.split(',')[1] + '-' + endDate.split(',')[1] + ' (PT)';
+                            const widgetArticleHeading = document.createElement('div');
+                            widgetArticleHeading.classList.add('widget-article-heading');
+                            widgetArticleHeading.innerText = singleData.shows[0].showName;
+
+                            const widgetTime = document.createElement('div');
+                            widgetTime.classList.add('widget-time');
+                            widgetTime.innerText = singleData.shows[0].djName;
+
+                            const widgetDescription = document.createElement('div');
+                            widgetDescription.classList.add('widget-description');
+                            widgetDescription.innerText = singleData.shows[0].showDescription;
+
+                            WidgetSectionUl.appendChild(widgetContentLi);
+                            widgetContentLi.appendChild(widgetContentImage);
+                            widgetContentImage.appendChild(widgetContentImgTag);
+                            widgetContentLi.appendChild(widgetArticle);
+                            widgetArticle.appendChild(widgetArticleHeading);
+                            widgetArticle.appendChild(widgetTime);
+                            widgetArticle.appendChild(widgetDescription);
+                        })
+
+                    })
+                })
+
             }
         }
 
@@ -249,8 +396,10 @@ export class Design {
         // ACTIVE MENU
 
         var selectMenuClass = document.querySelectorAll('.Widget-menu-a');
+        var selectAPI = Array.prototype.slice.call(selectMenuClass);
         const date = new Date();
-        const day = date.getDay()
+        var day = date.getDay();
+        // var apiDay = null;
         console.log(day)
         switch (day) {
             case 1:
@@ -266,6 +415,7 @@ export class Design {
                 break;
             case 5:
                 selectMenuClass[4].classList.add('Widget-active');
+                console.log("Friday")
                 break;
             case 6:
                 selectMenuClass[5].classList.add('Widget-active');
@@ -281,9 +431,14 @@ export class Design {
         console.log(navbar);
 
         navbar.forEach(element => {
+            // console.log(element)
             element.addEventListener("click", function () {
-                navbar.forEach(nav => nav.classList.remove("Widget-active"))
+
+                navbar.forEach(nav =>{
+                    nav.classList.remove("Widget-active");
+                }  )
                 this.classList.add("Widget-active");
+
             })
         })
     }
