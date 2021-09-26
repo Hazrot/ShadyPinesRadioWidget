@@ -2,7 +2,7 @@
   "name": "tawk",
   "version": "1.0.0",
   "description": "",
-  "homepage": "https://Hazrot.github.io/ShadyPinesRadioWidget",
+  "homepage": "https://github.com/Hazrot/ShadyPinesRadioWidget/blob/f99595a49f2ce01ea03cbdf234855686887f452f/src/index.html",
   "main": "app.js",
   "scripts": {
     "serve": "cp -R src/assets dist/assets && parcel serve src/index.html"
