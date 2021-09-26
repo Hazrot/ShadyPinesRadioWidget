@@ -1,9 +1,12 @@
 {
   "name": "tawk",
+  "homepage": "https://Hazrot.github.io/ShadyPinesRadioWidget",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "serve": "cp -R src/assets dist/assets && parcel serve src/index.html"
   },
   "keywords": [],
@@ -12,5 +15,8 @@
   "devDependencies": {
     "parcel": "^1.12.4",
     "parcel-bundler": "^1.12.3"
+  },
+  "dependencies": {
+    "gh-pages": "^3.2.3"
   }
 }
