@@ -294,7 +294,7 @@ export class Design {
                     clickDayData = data.data.Tuesday;
                 }else if (parseInt(sessionStorage.getItem("dayname")) === 3) {
                     clickDayData = data.data.Wednesday;
-                }else if (parseInt(sessionStorage.getItem("dayname") === 4)) {
+                }else if (parseInt(sessionStorage.getItem("dayname")) === 4) {
                     clickDayData = data.data.Thursday;
                 }else if (parseInt(sessionStorage.getItem("dayname")) === 5) {
                     clickDayData = data.data.Friday;

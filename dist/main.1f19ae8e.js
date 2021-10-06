@@ -430,7 +430,7 @@ function () {
             clickDayData = data.data.Tuesday;
           } else if (parseInt(sessionStorage.getItem("dayname")) === 3) {
             clickDayData = data.data.Wednesday;
-          } else if (parseInt(sessionStorage.getItem("dayname") === 4)) {
+          } else if (parseInt(sessionStorage.getItem("dayname")) === 4) {
             clickDayData = data.data.Thursday;
           } else if (parseInt(sessionStorage.getItem("dayname")) === 5) {
             clickDayData = data.data.Friday;
@@ -673,7 +673,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53275" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62340" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
